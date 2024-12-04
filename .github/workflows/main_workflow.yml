@@ -4,8 +4,8 @@ name: main_workflow
 on:
   push:
     branches:
-      - nodejs_linter_job
-      - nodejs_test_job
+      # - nodejs_linter_job
+      - nodejs_test_job # solo se ejecutara en un push a esta rama
 # ahora ejecutamos este job llamado linter execution
 jobs:
   linter_execution:
@@ -29,11 +29,10 @@ jobs:
   test-execution:
     needs: linter_execution # Dependencia del job linter_execution se necesita que acabe el job anterior
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/nodejs_test_job' # Solo se ejecuta en la rama nodejs_test_job
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2 # Descarga el codigo para ejecutar pruebas
       - name: Run_jest_test
-        run: |
-          npm install jest
+        run: | # instala jest que es un framework de pruebas de javascript.
+          npm install jest  
           npm test
