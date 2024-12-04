@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - nodejs_linter_job
+      - nodejs_test_job
 # ahora ejecutamos este job llamado linter execution
 jobs:
   linter_execution:
@@ -24,3 +25,15 @@ jobs:
           LINTER_RULES_PATH: /
           JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
           VALIDATE_JAVASCRIPT_ES: true
+
+  test-execution:
+    needs: linter_execution # Dependencia del job linter_execution se necesita que acabe el job anterior
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/nodejs_test_job' # Solo se ejecuta en la rama nodejs_test_job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run_jest_test
+        run: |
+          npm install jest
+          npm test
