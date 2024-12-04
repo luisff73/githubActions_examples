@@ -5,19 +5,19 @@ on:
   push:
     branches:
       - nodejs_linter_job
-
+# ahora ejecutamos este job llamado linter execution
 jobs:
   linter_execution:
     runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout code
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout code #nombre del step
+        uses: actions/checkout@v2 # la accion que ejecuta
 
       # Step 2: Linter execution
-      - name: Linter execution
-        uses: github/super-linter@v4
+      - name: Linter execution #nombre del step
+        uses: github/super-linter@v4 # la accion que ejecuta
         env:
           DEFAULT_BRANCH: nodejs_example
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
