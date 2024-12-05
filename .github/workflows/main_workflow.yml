@@ -1,0 +1,47 @@
+name: main_workflow
+
+# Ejecuta el workflow en un push a la rama especificada
+on:
+  push:
+    branches:
+      # - nodejs_linter_job
+      - nodejs_nodeversions_job # solo se ejecutara en un push a esta rama
+# ahora ejecutamos este job llamado linter execution
+jobs:
+  linter_execution:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16, 18, 20] # Versions de Node.js que queremos probar
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code #nombre del step
+        uses: actions/checkout@v2 # la accion que ejecuta
+
+      - name: Setting node version
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }} # Utilitzamos cada version del `matrix`
+
+      # Step 2: Linter execution
+      - name: Linter execution #nombre del step
+        uses: github/super-linter@v4 # la accion que ejecuta
+        env:
+          DEFAULT_BRANCH: nodejs_example
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LINTER_RULES_PATH: /
+          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
+          VALIDATE_JAVASCRIPT_ES: true
+
+  test-execution:
+    #needs: linter_execution # Dependencia del job linter_execution se necesita que acabe el job anterior
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2 # Descarga el codigo para ejecutar pruebas
+      - name: Run_jest_test
+        run: | # instala jest que es un framework de pruebas de javascript.
+          npm install jest  
+          npm test
