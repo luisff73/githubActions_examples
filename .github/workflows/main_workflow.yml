@@ -5,7 +5,7 @@ on:
   push:
     branches:
       # - nodejs_linter_job
-      - nodejs_test_job # solo se ejecutara en un push a esta rama
+      - nodejs_nodeversions_job # solo se ejecutara en un push a esta rama
 # ahora ejecutamos este job llamado linter execution
 jobs:
   linter_execution:
