@@ -49,8 +49,10 @@ jobs:
   environtment_test_execution:
     needs: [test-execution]
     runs-on: ubuntu-latest
+    env:
+      DESTINATION_PERSON: "2DAW"
     steps:
       - name: Step variables entorno
         uses: adeloyedeji/github-actions-hello@v1.0
         with:
-          who-to-greet: "Hello 2DAW"
+          who-to-greet: ${{ env.DESTINATION_PERSON }} # Assigna la variable de entorno
