@@ -52,5 +52,5 @@ jobs:
     steps:
       - name: Step variables entorno
         uses: adeloyedeji/github-actions-hello@v1.0
-        env:
+        with:
           who-to-greet: "Hello 2DAW"
