@@ -9,7 +9,7 @@ on:
 # ahora ejecutamos este job llamado linter execution
 jobs:
   linter_execution:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     strategy:
       matrix:
@@ -37,7 +37,7 @@ jobs:
 
   test-execution:
     needs: linter_execution # Dependencia del job linter_execution se necesita que acabe el job anterior
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v3 # Descarga el codigo para ejecutar pruebas
@@ -56,7 +56,7 @@ jobs:
 
 
   environtment_test_execution:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [test-execution]
     env:
       DESTINATION_PERSON: "2DAW"
