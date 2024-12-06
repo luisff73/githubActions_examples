@@ -19,7 +19,7 @@ jobs:
         run: | # instala jest que es un framework de pruebas de javascript.
           npm install  
           npm run build
-          working-directory: ./
+          working-directory: ./my-react-app
 
         # Sube los artifacts/ficheros generados por el siguiente job en este caso seran los archivos estaticos generados por "nmp run" los pondra en la carpeta  ./build
         # Artefactos en GitHub Actions son archivos generados o producidos en un job, que luego pueden ser almacenados y descargados en otro job o en un flujo posterior.
