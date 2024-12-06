@@ -9,7 +9,7 @@ on:
 # ahora ejecutamos este job llamado linter execution
 jobs:
   build_job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       # Step 1: Install npm
@@ -19,6 +19,8 @@ jobs:
         run: | # instala jest que es un framework de pruebas de javascript.
           npm install  
           npm run build
+          working-directory: ./
+
         # Sube los artifacts/ficheros generados por el siguiente job en este caso seran los archivos estaticos generados por "nmp run" los pondra en la carpeta  ./build
         # Artefactos en GitHub Actions son archivos generados o producidos en un job, que luego pueden ser almacenados y descargados en otro job o en un flujo posterior.
         # Los artefactos son útiles para compartir datos entre jobs o guardarlos como parte del proceso de la construcción o despliegue.
@@ -31,7 +33,7 @@ jobs:
 
   deploy_job:
     needs: build_job # Este job depende del resultado del job 'build'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       # Obtener el código del repositorio (descarga los artefactos)
@@ -48,7 +50,7 @@ jobs:
       - name: Deploy to foo-bar.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
-          domain: 'foo-bar.surge.sh'
-          project: '.'
+          domain: "foo-bar.surge.sh"
+          project: "."
           login: ${{ secrets.surge_login }}
           token: ${{ secrets.surge_token }}
