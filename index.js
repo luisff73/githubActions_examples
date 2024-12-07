@@ -22,7 +22,11 @@ if (resultatTests === 'success') {
 async function generarMeme() {
   try {
     // Petición para crear el meme usando la API de Memegen
+
+
     const response = await axios.get(`https://api.memegen.link/images/custom/_/${encodeURIComponent(textoMeme)}.png`);
+    const memeUrl = `https://api.memegen.link/images/custom/_/${encodeURIComponent(textoMeme)}.png`;
+    console.log('URL del meme:', memeUrl);
 
     // Revisa si la creación del meme fue exitosa
     if (response.status === 200) {
