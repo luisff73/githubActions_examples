@@ -25,12 +25,15 @@ async function generarMeme() {
     const textoCodificado = encodeURIComponent(textoMeme);
     console.log(`Texto codificado: ${textoCodificado}`);
 
+    // Formar la URL de la API de Memegen
+    const memeUrl = `https://api.memegen.link/images/custom/_/${textoCodificado}.png`;
+    console.log(`URL generada: ${memeUrl}`);
+
     // Petición para crear el meme usando la API de Memegen
-    const response = await axios.get(`https://api.memegen.link/images/custom/_/${textoCodificado}.png`);
+    const response = await axios.get(memeUrl);
 
     // Revisa si la creación del meme fue exitosa
     if (response.status === 200) {
-      const memeUrl = response.config.url;
       console.log('Meme generado con éxito:', memeUrl);
 
       // Modificar el README.md
@@ -71,6 +74,7 @@ async function generarMeme() {
       core.setFailed('Error al generar el meme.');
     }
   } catch (error) {
+    console.error('Error al generar el meme: ', error);
     core.setFailed('Error al generar el meme: ' + error.message);
   }
 }
