@@ -1,0 +1,19 @@
+name: "Modificar README con Meme"
+description: "Acción para modificar README.md añadiendo un meme con texto aleatorio basado en los tests."
+inputs:
+  frase_positiva:
+    description: "Frase positiva a mostrar cuando los tests sean exitosos."
+    required: true
+    default: "Los tests han funcionado y lo sabes."
+  frase_negativa:
+    description: "Frase negativa a mostrar cuando los tests fallen."
+    required: true
+    default: "Los tests han fallado y lo sabes."
+  resultat_tests:
+    description: 'Resultado de la ejecución de los tests: "positivo" o "negativo".'
+    required: true
+    default: "positivo"
+
+runs:
+  using: "node12"
+  main: "index.js"
