@@ -10,9 +10,9 @@ const resultatTests = core.getInput('resultat_tests');
 // Determina el texto del meme
 let textoMeme = '';
 if (resultatTests === 'success') {
-  textoMeme = frasePositiva;
+  textoMeme = 'Test exitoso'; // Simplificado para verificar
 } else if (resultatTests === 'failure') {
-  textoMeme = fraseNegativa;
+  textoMeme = 'Test fallido'; // Simplificado para verificar
 } else {
   core.setFailed('El valor de resultat_tests no es válido.');
   return;
