@@ -7,7 +7,7 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       resultat_tests: ${{ steps.test.outcome }} # Definir la salida de los tests
 
@@ -29,7 +29,7 @@ jobs:
         run: echo "resultat_tests=${{ steps.test.outcome }}" >> $GITHUB_ENV
 
   modificar_readme:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: tests
     steps:
       - name: Revisar el repositorio
