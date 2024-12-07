@@ -1,0 +1,24 @@
+name: Send Telegram Message
+
+on:
+  push:
+    branches:
+      - send_telegram_action
+
+jobs:
+  envio_missatge:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout del codigo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Ejecutar la accion personalitzada
+      - name: Send Telegram Message
+        #uses: ./.github/actions
+        uses: ./
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_ID_USER }}
+        with:
+          name: "LUIS"
