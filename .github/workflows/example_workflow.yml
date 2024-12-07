@@ -50,7 +50,7 @@ jobs:
       - name: Deploy to foo-bar.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
-          domain: "foo-bar.surge.sh"
+          domain: "luis_ferri.surge.sh"
           project: "."
           login: ${{ secrets.surge_login }}
           token: ${{ secrets.surge_token }}
