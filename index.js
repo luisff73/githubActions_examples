@@ -21,12 +21,12 @@ if (resultatTests === 'success') {
 // Función para generar el meme
 async function generarMeme() {
   try {
+    // Codificación de la URL para evitar errores
+    const textoCodificado = encodeURIComponent(textoMeme);
+    console.log(`Texto codificado: ${textoCodificado}`);
+
     // Petición para crear el meme usando la API de Memegen
-
-
-    const response = await axios.get(`https://api.memegen.link/images/custom/_/${encodeURIComponent(textoMeme)}.png`);
-    const memeUrl = `https://api.memegen.link/images/custom/_/${encodeURIComponent(textoMeme)}.png`;
-    console.log('URL del meme:', memeUrl);
+    const response = await axios.get(`https://api.memegen.link/images/custom/_/${textoCodificado}.png`);
 
     // Revisa si la creación del meme fue exitosa
     if (response.status === 200) {
