@@ -3,9 +3,9 @@ const axios = require('axios');
 const core = require('@actions/core');
 
 // Obtiene los inputs del action.yml
-// const frasePositiva = core.getInput('frase_positiva');
-// const fraseNegativa = core.getInput('frase_negativa');
-// const resultatTests = core.getInput('resultat_tests');
+const frasePositiva = core.getInput('frase_positiva');
+const fraseNegativa = core.getInput('frase_negativa');
+const resultatTests = core.getInput('resultat_tests');
 
 // Determina el texto del meme
 let textoMeme = '';
