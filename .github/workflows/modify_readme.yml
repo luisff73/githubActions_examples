@@ -5,11 +5,14 @@ on:
     branches:
       - github_action_readme
 
+permissions:
+  contents: write
+
 jobs:
   tests:
     runs-on: ubuntu-24.04
     outputs:
-      resultat_tests: ${{ steps.test.outcome }} # Definir la salida de los tests
+      resultat_tests: ${{ steps.test.outcome }}
 
     steps:
       - name: Revisar el repositorio
