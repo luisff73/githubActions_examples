@@ -7,12 +7,6 @@ const core = require('@actions/core');
 // const fraseNegativa = core.getInput('frase_negativa');
 // const resultatTests = core.getInput('resultat_tests');
 
-// Simula las entradas del archivo action.yml
-const frasePositiva = "Los tests han funcionado y lo sabes.";
-const fraseNegativa = "Los tests han fallado y lo sabes.";
-const resultatTests = "success"; // Cambia a "failure" para probar otro caso
-
-
 // Determina el texto del meme
 let textoMeme = '';
 if (resultatTests === 'success') {
