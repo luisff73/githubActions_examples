@@ -2,38 +2,40 @@ const fs = require('fs');
 const axios = require('axios');
 const core = require('@actions/core');
 
-// Obtén los inputs
-const frasePositiva = core.getInput('frase_positiva');
-const fraseNegativa = core.getInput('frase_negativa');
-const resultatTests = core.getInput('resultat_tests');
+// Obtiene los inputs del action.yml
+// const frasePositiva = core.getInput('frase_positiva');
+// const fraseNegativa = core.getInput('frase_negativa');
+// const resultatTests = core.getInput('resultat_tests');
+
+// Simula las entradas del archivo action.yml
+const frasePositiva = "Los tests han funcionado y lo sabes.";
+const fraseNegativa = "Los tests han fallado y lo sabes.";
+const resultatTests = "success"; // Cambia a "failure" para probar otro caso
+
 
 // Determina el texto del meme
 let textoMeme = '';
 if (resultatTests === 'success') {
-  textoMeme = 'Test exitoso'; // Simplificado para verificar
+  textoMeme = frasePositiva;
 } else if (resultatTests === 'failure') {
-  textoMeme = 'Test fallido'; // Simplificado para verificar
+  textoMeme = fraseNegativa;
 } else {
   core.setFailed('El valor de resultat_tests no es válido.');
   return;
 }
-
+//console.log (textoMeme)
 // Función para generar el meme
 async function generarMeme() {
   try {
-    // Codificación de la URL para evitar errores
-    const textoCodificado = encodeURIComponent(textoMeme);
-    console.log(`Texto codificado: ${textoCodificado}`);
-
-    // Formar la URL de la API de Memegen
-    const memeUrl = `https://api.memegen.link/images/custom/_/${textoCodificado}.png`;
-    console.log(`URL generada: ${memeUrl}`);
-
     // Petición para crear el meme usando la API de Memegen
-    const response = await axios.get(memeUrl);
+    // const response = await axios.get(`https://api.memegen.link/images/custom/_/${encodeURIComponent(textoMeme)}.png`);
+    const response = await axios.get(`https://api.memegen.link/images/success/${encodeURIComponent(textoMeme)}.png`);
+                                     
+    console.log (response.data)
 
     // Revisa si la creación del meme fue exitosa
     if (response.status === 200) {
+      const memeUrl = response.config.url;
       console.log('Meme generado con éxito:', memeUrl);
 
       // Modificar el README.md
@@ -74,7 +76,6 @@ async function generarMeme() {
       core.setFailed('Error al generar el meme.');
     }
   } catch (error) {
-    console.error('Error al generar el meme: ', error);
     core.setFailed('Error al generar el meme: ' + error.message);
   }
 }

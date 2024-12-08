@@ -40,7 +40,7 @@ jobs:
           npm install
 
       - name: Añadir meme al README
-        uses: ./ # Apunta al directorio donde está tu acción personalizada
+        uses: ./ # Apunta al directorio donde está la acción personalizada (action.yml)
         with:
           frase_positiva: "Los tests han funcionado y lo sabes."
           frase_negativa: "Los tests han fallado y lo sabes."

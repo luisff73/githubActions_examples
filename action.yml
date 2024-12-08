@@ -1,7 +1,7 @@
 name: "Modificar README con Meme"
 description: "Acción para modificar README.md añadiendo un meme con texto aleatorio basado en los tests."
 inputs:
-  frase_positiva:
+  frase_positiva: # nombre del Input.
     description: "Frase positiva a mostrar cuando los tests sean exitosos."
     required: true
     default: "Los tests han funcionado y lo sabes."

@@ -1,7 +1,7 @@
 # Mi Proyecto
 
 <!-- MEME_INICIO -->
-<!-- Aquí se agregará el meme generado -->
+![Meme de resultados de tests](https://api.memegen.link/images/success/Los%20tests%20han%20funcionado%20y%20lo%20sabes..png)
 <!-- MEME_FIN -->
 
 ## Descripción del Proyecto
